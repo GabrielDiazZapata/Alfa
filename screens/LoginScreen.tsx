@@ -1,6 +1,6 @@
 import { Text, StyleSheet, View, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 type LoginProps = {
   navigation: any; // Asegúrate de usar el tipo de navegación adecuado aquí
@@ -9,11 +9,16 @@ export default function Login(props: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<any>>();
 
-    function logearte(): void {
-        throw new Error('Function not implemented.');
+  function logearte(): void {
+    if (email && password) {
+      // Solo si ambos campos están llenos, navegar a WelcomeScreen
+      navigation.navigate('Main');
+    } else {
+      console.log('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
     }
+  }
 
   return (
     <View style={styles.padre}>
