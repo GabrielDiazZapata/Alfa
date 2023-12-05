@@ -5,6 +5,7 @@ import { useState } from 'react';
 import LoginScreen from './screens/LoginScreen';
 import MainPage from './components/MainPage';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import Header from './components/Header';
 export default function App() {
   const Stack = createStackNavigator();
   const [isEnabled, setIsEnabled] = useState(false);

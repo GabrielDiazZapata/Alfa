@@ -6,26 +6,17 @@ import {
   Switch,
 } from "react-native";
 
-type HeaderProps = {
-  isEnabled: boolean,
-  setIsEnabled: Function
-}
 
-const Header = (props: HeaderProps) => {
-  const {isEnabled, setIsEnabled} = props
-  const toggleSwitch = () => setIsEnabled((previousState:boolean) => !previousState);
+const Header = () => {
   return (
-    <View style={[styles.topContainer, {backgroundColor: isEnabled ? "grey" : "#383A42"}]}>
+    <View style={styles.topContainer}>
       <View style={styles.subContainer}>
         <Text style={styles.titleHeader}>My Portfolio App</Text>
-        <Ionicons style={styles.headerIcons} name={isEnabled ? "sunny-outline" : "moon-outline"} size={30}/>
+        <Ionicons style={styles.headerIcons}/>
         <Switch
           style ={styles.switchButton}
           trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
         />
       </View>
     </View>
