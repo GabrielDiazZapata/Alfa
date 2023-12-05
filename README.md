@@ -1,57 +1,39 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import Header from './components/Header';
-import MainPage from './components/MainPage';
-import Welcome from './screens/Welcome';
-import Login from './screens/LoginScreen';
+ <NavigationContainer>
+      <Stack.Navigator>
+        {/* Puedes agregar tu pantalla de Login aquí */}
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            title: "LOGIN",
+            headerTintColor: "#1f0a1d",
+            headerTitleAlign: "center",
+            headerStyle: { backgroundColor: "#9acc77" },
+          }}
+        />
+        {/* Tu pantalla de bienvenida */}
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{
+            title: "ALFA",
+            headerTintColor: "",
+            headerTitleAlign: "center", 
+            headerStyle: { backgroundColor: "#45936c" },
+          }}
 
-const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
+        />
+      <Stack.Screen
+          name="Main"
+          component={() => <MainPage isEnabled={isEnabled} />}
+          options={{
+            title: "Portfolio",
+            headerTintColor: "white",
+            headerTitleAlign: "center",
+            headerStyle: { backgroundColor: "#525FE1" },
+          }}
+        />
 
-const HomeStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Login"
-      component={Login}
-      options={{
-        title: "LOGIN",
-        headerTintColor: "white",
-        headerTitleAlign: "center",
-        headerStyle: { backgroundColor: "#525FE1" },
-      }}
-    />
-    <Stack.Screen
-      name="Home"
-      component={Welcome}
-      options={{
-        title: "HOME",
-        headerTintColor: "white",
-        headerTitleAlign: "center",
-        headerStyle: { backgroundColor: "#525FE1" },
-      }}
-    />
-  </Stack.Navigator>
-);
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeStack} />
-        {/* Agrega más Drawer.Screen para otras pantallas */}
-      </Drawer.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

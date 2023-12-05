@@ -14,14 +14,20 @@ export default function Login(props: LoginProps) {
   function logearte(): void {
     if (email && password) {
       // Solo si ambos campos están llenos, navegar a WelcomeScreen
-      navigation.navigate('Main');
+      navigation.navigate('Welcome');
     } else {
       console.log('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
     }
   }
 
   return (
-    <View style={styles.padre}>
+    <View style={styles.container}>
+        <Image
+          source={require('../assets/fondo3.jpg')} // Asegúrate de tener una imagen en tu proyecto
+          style={styles.image}
+          resizeMode="cover"
+        />
+      <View style={styles.padre}>
       <View>
         <Image source={require('../assets/LOGO_GABRIEL.png')} style={styles.profile} />
       </View>
@@ -42,15 +48,23 @@ export default function Login(props: LoginProps) {
         </View>
       </View>
     </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  padre: {
+  container: {
     flex: 1,
+  },
+  padre: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   profile: {
     width: 100,
@@ -92,5 +106,10 @@ const styles = StyleSheet.create({
   textoBoton: {
     textAlign: 'center',
     color: 'white'
+  },
+  image: {
+    flex: 1,
+    width: '100%',
+    height: undefined,
   }
 });

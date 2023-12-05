@@ -1,54 +1,53 @@
-import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import WelcomeScreen from './screens/WelcomeScreen';
 import { useState } from 'react';
 import LoginScreen from './screens/LoginScreen';
 import MainPage from './components/MainPage';
-
+import { createDrawerNavigator } from '@react-navigation/drawer';
 export default function App() {
   const Stack = createStackNavigator();
   const [isEnabled, setIsEnabled] = useState(false);
-
+  const Drawer = createDrawerNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Drawer.Navigator>
         {/* Puedes agregar tu pantalla de Login aquí */}
-        <Stack.Screen
+        <Drawer.Screen
           name="Login"
           component={LoginScreen}
           options={{
             title: "LOGIN",
-            headerTintColor: "white",
+            headerTintColor: "#9acc77",
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#525FE1" },
+            headerStyle: { backgroundColor: "#1f0a1d" },
           }}
         />
         {/* Tu pantalla de bienvenida */}
-        <Stack.Screen
+        <Drawer.Screen
           name="Welcome"
           component={WelcomeScreen}
           options={{
             title: "ALFA",
-            headerTintColor: "#1f0a1d",
+            headerTintColor: "#9acc77",
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#e5ead4" },
+            headerStyle: { backgroundColor: "#1f0a1d" },
           }}
 
         />
-      <Stack.Screen
+      <Drawer.Screen
           name="Main"
-          component={() => <MainPage isEnabled={isEnabled} />}
+          component={MainPage}
           options={{
             title: "Portfolio",
-            headerTintColor: "white",
+            headerTintColor: "#9acc77",
             headerTitleAlign: "center",
-            headerStyle: { backgroundColor: "#525FE1" },
+            headerStyle: { backgroundColor: "#1f0a1d" },
           }}
         />
 
 
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

@@ -6,8 +6,6 @@ import {
   Image,
 } from "react-native";
 import ModalComponent from "./ModalComponent";
-import InformationModal from "./InformationModal";
-
 type CardProps = {
   personalImage: ImageProps;
   name: string;
@@ -16,19 +14,17 @@ type CardProps = {
   iconsMedia: ImageProps[];
   qrURL: string;
   informationData: string[];
-  isEnabled: boolean;
 };
 
 const Card = (props: CardProps) => {
-  const { personalImage, name, info, iconsUrls, iconsMedia, qrURL, informationData, isEnabled } = props;
+  const { personalImage, name, info, iconsUrls, iconsMedia, qrURL } = props;
   return (
-    <View style={[styles.cardContainer, {backgroundColor: isEnabled ? "#D7D0C8" : "#607471"}]}>
+    <View style={styles.cardContainer}>
       <View style={styles.cardTitleContainer}>
         <Image style={styles.personalImage} source={personalImage} />
         <Text style={styles.cardTitleText}>{name}</Text>
         <Text style={styles.textStyle}> {info} </Text>
-        <ModalComponent isEnabled={isEnabled} iconsUrls={iconsUrls} iconsMedia={iconsMedia} qrURL={qrURL}/>
-        <InformationModal isEnabled={isEnabled} informationData={informationData}/>
+        <ModalComponent iconsUrls={iconsUrls} iconsMedia={iconsMedia} qrURL={qrURL}/>
       </View>
     </View>
   );
