@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 80,
-    /* backgroundColor: "#D7D0C8", //Nice */
-    backgroundColor: "#607471",
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 40,
     marginVertical: 20,
     marginHorizontal: 15,

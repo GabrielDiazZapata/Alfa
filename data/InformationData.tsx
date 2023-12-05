@@ -15,8 +15,10 @@ export const peopleData: PersonalData[] = [
         name: 'Gabriel Díaz',
         iconsUrls: ["@GabrielDiazZapata", "@TwitterDeGabri", "Gabriel Diaz Zapata"],
         iconsMedia: [require('../assets/logoInsta.png'), require('../assets/logoTwitter.png'), require('../assets/logolinkeding.png')],
-        info: 'Un pive de Tenerife yoquese',
+        info: 'Soy Gabriel, tengo 20 años y vengo a contar mi historia...',
         qrURL: 'https://github.com/GabrielDiazZapata',
         informationData: ["Er Furbo", "Er Jimnazio", "Acé depoté", "Condusi el coxe"]
     }
 ]
+
+

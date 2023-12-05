@@ -5,7 +5,7 @@ const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/fondo5.jpg')} // Asegúrate de tener una imagen en tu proyecto
+        source={require('../assets/fondo5.jpg')} 
         style={styles.image}
         resizeMode="cover"
       />

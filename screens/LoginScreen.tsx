@@ -1,115 +1,123 @@
-import { Text, StyleSheet, View, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { View, Image, TextInput, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useAuth } from '../components/AuthContext'; 
 
 type LoginProps = {
-  navigation: any; // Asegúrate de usar el tipo de navegación adecuado aquí
+  navigation: NavigationProp<any>;
 };
-export default function Login(props: LoginProps) {
+
+const LoginScreen: React.FC<LoginProps> = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const navigation = useNavigation<NavigationProp<any>>();
+  const { login } = useAuth(); // Utilizo el método de login desde el contexto de autenticación
 
-  function logearte(): void {
+  const handleLogin = () => {
     if (email && password) {
-      // Solo si ambos campos están llenos, navegar a WelcomeScreen
-      navigation.navigate('Welcome');
+      // Intenta iniciar sesión
+      const loginSuccess = login(email, password);
+
+      if (loginSuccess) {
+        // Inicio de sesión exitoso, navegar a WelcomeScreen
+        navigation.navigate('Welcome');
+      } else {
+        setError('Error de inicio de sesión: Credenciales incorrectas');
+      }
     } else {
-      console.log('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
+      // Correo electrónico y contraseña son necesarios
+      setError('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
     }
-  }
+  };
 
   return (
-    <View style={styles.container}>
-        <Image
-          source={require('../assets/fondo3.jpg')} // Asegúrate de tener una imagen en tu proyecto
-          style={styles.image}
-          resizeMode="cover"
-        />
-      <View style={styles.padre}>
-      <View>
-        <Image source={require('../assets/LOGO_GABRIEL.png')} style={styles.profile} />
-      </View>
+    <ImageBackground
+      source={require('../assets/fondo3.jpg')} 
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Image source={require('../assets/LOGO_GABRIEL.png')} style={styles.profile} />
 
-      <View style={styles.tarjeta}>
-        <View style={styles.cajaTexto}>
-          <TextInput placeholder=' Correo electrónico ' style={{ paddingHorizontal: 15 }} onChangeText={(text) => setEmail(text)} />
-        </View>
+          <View style={styles.inputBox}>
+            <TextInput
+              placeholder=' Correo electrónico '
+              style={{ paddingHorizontal: 30 }}
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
 
-        <View style={styles.cajaTexto}>
-          <TextInput placeholder='Contraseña' style={{ paddingHorizontal: 15 }} onChangeText={(text) => setPassword(text)} secureTextEntry={true} />
-        </View>
+          <View style={styles.inputBox}>
+            <TextInput
+              placeholder='Contraseña'
+              style={{ paddingHorizontal: 50 }}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry
+            />
+          </View>
 
-        <View style={styles.PadreBoton}>
-          <TouchableOpacity style={styles.cajaBoton} onPress={logearte}>
-            <Text style={styles.textoBoton}>Iniciar Sesión</Text>
+          {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+          <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </View>
-    </View>
+    </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  padre: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  card: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderRadius: 20,
+    width: '100%',
+    padding: 60,
+    alignItems: 'center',
   },
   profile: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    borderBlockColor: 'white'
+    marginBottom: 20,
   },
-  tarjeta: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    width: '90%',
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  cajaTexto: {
+  inputBox: {
+    width: '100%',
     paddingVertical: 20,
-    backgroundColor: '#cccccc40',
+    backgroundColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 30,
-    marginVertical: 10
+    marginVertical: 10,
   },
-  PadreBoton: {
-    alignItems: 'center',
-  },
-  cajaBoton: {
+  buttonBox: {
     backgroundColor: '#525FE1',
     borderRadius: 30,
     paddingVertical: 20,
-    width: 150,
-    marginTop: 20
+    width: 160,
+    marginTop: 20,
   },
-  textoBoton: {
+  buttonText: {
     textAlign: 'center',
-    color: 'white'
+    color: 'white',
   },
-  image: {
+  errorText: {
+    color: 'red',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  backgroundImage: {
     flex: 1,
     width: '100%',
-    height: undefined,
-  }
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+
+export default LoginScreen;

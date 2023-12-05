@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   StyleSheet,
   Modal,
@@ -7,7 +8,6 @@ import {
   Image,
   ImageProps,
 } from "react-native";
-import React, { useState } from "react";
 import QrCode from "./QrCode";
 
 type ModalProps = {
@@ -20,18 +20,12 @@ const ModalComponent = (props: ModalProps) => {
   const { iconsUrls, iconsMedia, qrURL } = props;
   const [isModalVisible1, setModalVisible1] = useState(false);
   const [isModalVisible2, setModalVisible2] = useState(false);
-  const openModal1 = () => {
-    setModalVisible1(true);
-  };
-  const openModal2 = () => {
-    setModalVisible2(true);
-  };
-  const closeModal1 = () => {
-    setModalVisible1(false);
-  };
-  const closeModal2 = () => {
-    setModalVisible2(false);
-  };
+
+  const openModal1 = () => setModalVisible1(true);
+  const closeModal1 = () => setModalVisible1(false);
+
+  const openModal2 = () => setModalVisible2(true);
+  const closeModal2 = () => setModalVisible2(false);
 
   return (
     <>
@@ -40,17 +34,17 @@ const ModalComponent = (props: ModalProps) => {
           style={[styles.button, styles.buttonOpen]}
           onPress={openModal1}
         >
-          <Text style={[styles.textStyle, styles.buttonText]}>Qr Github</Text>
+          <Text style={styles.buttonText}>Qr Github</Text>
         </Pressable>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
           onPress={openModal2}
         >
-          <Text style={[styles.textStyle, styles.buttonText]}>
-            Social Media
-          </Text>
+          <Text style={styles.buttonText}>Social Media</Text>
         </Pressable>
       </View>
+
+      {/* Modal 1: Qr Github */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -59,18 +53,18 @@ const ModalComponent = (props: ModalProps) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <View style={styles.qr}>
-              <QrCode qrURL={qrURL} />
-            </View>
+            <QrCode qrURL={qrURL} />
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={closeModal1}
             >
-              <Text style={[styles.textStyle, styles.buttonText]}>Cerrar</Text>
+              <Text style={styles.buttonText}>Cerrar</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
+
+      {/* Modal 2: Social Media */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -81,18 +75,18 @@ const ModalComponent = (props: ModalProps) => {
           <View style={styles.modalView}>
             <View style={styles.socialIconsContainer}>
               <View style={styles.sociaMediaIconsContainer}>
-                {iconsMedia.map((iconsMedia, key) => (
+                {iconsMedia.map((icon, key) => (
                   <Image
-                    style={styles.socialMediaIcons}
-                    source={iconsMedia}
                     key={key}
+                    style={styles.socialMediaIcons}
+                    source={icon}
                   />
                 ))}
               </View>
               <View style={styles.socialMediaInfoSocial}>
-                {iconsUrls.map((iconsUrls, key) => (
-                  <Text style={styles.infoSocial} key={key}>
-                    {iconsUrls}
+                {iconsUrls.map((url, key) => (
+                  <Text key={key} style={styles.infoSocial}>
+                    {url}
                   </Text>
                 ))}
               </View>
@@ -101,7 +95,7 @@ const ModalComponent = (props: ModalProps) => {
               style={[styles.button, styles.buttonClose]}
               onPress={closeModal2}
             >
-              <Text style={[styles.textStyle, styles.buttonText]}>Cerrar</Text>
+              <Text style={styles.buttonText}>Cerrar</Text>
             </Pressable>
           </View>
         </View>
@@ -110,24 +104,23 @@ const ModalComponent = (props: ModalProps) => {
   );
 };
 
-export default ModalComponent;
-
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom: 20,
   },
   button: {
-    borderRadius: 40,
+    borderRadius: 20,
     padding: 10,
     elevation: 3,
-    margin: 2,
+    margin: 5,
+    minWidth: 120,
   },
   buttonText: {
     color: "white",
@@ -140,17 +133,10 @@ const styles = StyleSheet.create({
   buttonClose: {
     backgroundColor: "blue",
   },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
   modalView: {
-    margin: 20,
-    borderRadius: 50,
-    height: 210,
-    width: 260,
-    padding: 30,
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderRadius: 20,
+    padding: 5,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -161,31 +147,27 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  qr: {
-    bottom: 10,
-  },
   socialIconsContainer: {
-    flex: 1,
     flexDirection: "row",
-    flexWrap: "wrap",
     alignItems: "flex-start",
   },
-  infoSocial: {
-    flexDirection: "column",
-    marginBottom: 10
+  sociaMediaIconsContainer: {
+    width: '8%',
+    alignItems: 'center',
   },
   socialMediaIcons: {
-    maxWidth: 20,
-    flexDirection: "column",
-    height: 20,
-    width: 20,
-    borderRadius: 50,
-    marginBottom: 10
-  },
-  sociaMediaIconsContainer: {
-    width: '20%',
+    width: 22,
+    height: 22,
+    borderRadius: 20,
+    marginBottom: 10,
   },
   socialMediaInfoSocial: {
-    width: '80%'
-  }
+    width: '70%',
+    alignItems: 'flex-start',
+  },
+  infoSocial: {
+    marginBottom: 10,
+  },
 });
+
+export default ModalComponent;
