@@ -32,6 +32,12 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
     }
   };
 
+  const handleRegister = () => {
+    if (handleLogin == null) {
+      navigation.navigate('Register');
+    }
+  };
+
   return (
     <ImageBackground
       source={require('../assets/fondo3.jpg')} 
@@ -62,6 +68,9 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
 
           <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
             <Text style={styles.buttonText}>Iniciar Sesión</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonRegister}>
+            <Text style={styles.buttonRegisterText}>Crear cuenta </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -101,6 +110,14 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     width: 160,
     marginTop: 20,
+    marginBottom:20
+  },
+  buttonRegister:{
+    borderBottomWidth:1,
+    borderBottomColor:"blue",
+  },
+  buttonRegisterText:{
+    color:"blue"
   },
   buttonText: {
     textAlign: 'center',

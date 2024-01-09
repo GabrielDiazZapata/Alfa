@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import MainPage from './MainPage';
 import appColors from '../assets/Styles/appColors';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,8 +32,8 @@ const CustomDrawer = () => {
     <Drawer.Navigator initialRouteName='Welcome' screenOptions={drawerNavigatorScreenOptions}>
       <Drawer.Screen name='Welcome' component={WelcomeScreen}/>
       <Drawer.Screen name='Login' component={LoginScreen} />
-      <Drawer.Screen name='Portfolio'component={MainPage}
- />
+      <Drawer.Screen name='Portfolio'component={MainPage} />
+      <Drawer.Screen name='Register' component={RegisterScreen} />
     </Drawer.Navigator>
   )
 }

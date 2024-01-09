@@ -6,6 +6,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import MainPage from './components/MainPage';
 import { AuthProvider } from './components/AuthContext';
+import RegisterScreen from './screens/RegisterScreen';
 
 export default function App() {
   const Drawer = createDrawerNavigator();
@@ -33,6 +34,17 @@ export default function App() {
               headerTitleAlign: "center",
               headerStyle: { backgroundColor: "#1f0a1d" },
             }}
+          />
+          <Drawer.Screen
+            name="Registrarse"
+            component={RegisterScreen}
+            options={{
+              title: "Crear Cuenta",
+              headerTintColor: "#9acc77",
+              headerTitleAlign: "center",
+              headerStyle: { backgroundColor: "#1f0a1d" },
+            }}
+
           />
           <Drawer.Screen
             name="Main"
