@@ -33,9 +33,9 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
   };
 
   const handleRegister = () => {
-    if (handleLogin == null) {
-      navigation.navigate('Register');
-    }
+    
+      navigation.navigate('Registrarse');
+    
   };
 
   return (
@@ -69,7 +69,7 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
           <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
             <Text style={styles.buttonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonRegister}>
+          <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
             <Text style={styles.buttonRegisterText}>Crear cuenta </Text>
           </TouchableOpacity>
         </View>
