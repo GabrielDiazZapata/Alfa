@@ -12,6 +12,7 @@ export default function App() {
   const Drawer = createDrawerNavigator();
 
   return (
+    
     <AuthProvider>
       <NavigationContainer>
         <Drawer.Navigator>

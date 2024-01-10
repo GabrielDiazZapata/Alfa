@@ -32,6 +32,10 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
     }
   };
 
+  const handleLogout = () => {
+    
+  }
+
   const handleRegister = () => {
     
       navigation.navigate('Registrarse');
