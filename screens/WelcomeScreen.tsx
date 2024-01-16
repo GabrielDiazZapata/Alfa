@@ -10,7 +10,7 @@ const WelcomeScreen: React.FC = () => {
   };
 
   const navigateToRegister = () => {
-    navigation.navigate('Register');
+    navigation.navigate('Registrarse');
   };
   return (
     <ImageBackground

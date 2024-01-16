@@ -1,46 +1,64 @@
-import React, { useState } from 'react';
-import { View, Image, TextInput, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
-const RegisterScreen = () => {
-  return (
-    <ImageBackground
-      source={require('../assets/fondo3.jpg')} 
-      style={styles.backgroundImage}
-    >
-      <View style={styles.container}>
-        <View style={styles.card}>
-        <View style={styles.inputBox}>
-            <TextInput
-              placeholder='Nombre'
-              style={{ paddingHorizontal: 70 }}
-            />
-          </View>
-          <View style={styles.inputBox}>
-            <TextInput
-              placeholder=' Correo electrónico '
-              style={{ paddingHorizontal: 30 }}
-            />
-          </View>
+// RegisterScreen.tsx
 
-          <View style={styles.inputBox}>
-            <TextInput
-              placeholder='Contraseña'
-              style={{ paddingHorizontal: 50 }}
-              secureTextEntry
-            />
-          </View>
-          <TouchableOpacity style={styles.buttonBox} >
-            <Text style={styles.buttonText}>Crear Cuenta</Text>
-          </TouchableOpacity>
-          
-        </View>
-      </View>
-    </ImageBackground>
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+
+const RegisterScreen: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleRegister = async () => {
+    try {
+      const response = await fetch('http://192.168.1.135:8888/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Usuario registrado exitosamente', data);
+      } else {
+        console.error('Error en el registro:', data.message);
+      }
+    } catch (error: any) {
+      console.error('Error de red:', error.message);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text>Registro de Usuario </Text>
+      <TextInput
+        placeholder="Nombre"
+        value={name}
+        onChangeText={(text) => setName(text)}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Correo Electrónico"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Contraseña"
+        secureTextEntry
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+        style={styles.input}
+      />
+      <Button title="Registrar" onPress={handleRegister} />
+    </View>
   );
 };
-
-         
-
-export default RegisterScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -48,55 +66,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderRadius: 20,
-    width: '100%',
-    padding: 70,
-    alignItems: 'center',
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+    width: '80%',
   },
-  profile: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
-  },
-  inputBox: {
-    width: '100%',
-    paddingVertical: 20,
-    backgroundColor: 'rgba(204, 204, 204, 0.6)',
-    borderRadius: 30,
-    marginVertical: 10,
-  },
-  buttonBox: {
-    backgroundColor: '#525FE1',
-    borderRadius: 30,
-    paddingVertical: 20,
-    width: 160,
-    marginTop: 20,
-    marginBottom:20
-  },
-  buttonRegister:{
-    borderBottomWidth:1,
-    borderBottomColor:"blue",
-  },
-  buttonRegisterText:{
-    color:"blue"
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white',
-  },
-  errorText: {
-    color: 'red',
-    marginTop: 10,
-    textAlign: 'center',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
+});
+
+export default RegisterScreen;
