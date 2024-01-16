@@ -1,44 +1,33 @@
+// LoginScreen.tsx
 import React, { useState } from 'react';
-import {
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  ImageBackground,
-} from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../components/AuthContext';
 
-type LoginProps = {
-  navigation: NavigationProp<any>;
-};
-
-const LoginScreen: React.FC<LoginProps> = (props) => {
+const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const navigation = useNavigation<NavigationProp<any>>();
+  const navigation = useNavigation();
   const { login } = useAuth();
 
-  const handleLogin = () => {
-    if (email && password) {
-      const loginSuccess = login(email, password);
+  const handleLogin = async () => {
+    try {
+      if (email && password) {
+        const loginSuccess = await login(email, password);
 
-      if (loginSuccess) {
-        navigation.navigate('Welcome');
+        if (loginSuccess) {
+          navigation.navigate('Welcome');
+        } else {
+          setError('Error de inicio de sesión: Credenciales incorrectas');
+        }
       } else {
-        setError('Error de inicio de sesión: Credenciales incorrectas');
+        setError('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
       }
-    } else {
-      setError('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
+    } catch (error: any) {
+      console.error('Error en el manejo del inicio de sesión:', error.message);
     }
-  };
-
-  const handleLogout = () => {
-    // ¿Es necesario un handleLogout aquí?
   };
 
   const handleRegister = () => {
@@ -46,42 +35,29 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
   };
 
   return (
-    <ImageBackground
-      source={require('../assets/fondo3.jpg')}
-      style={styles.backgroundImage}
-    >
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <Image source={require('../assets/LOGO_GABRIEL.png')} style={styles.profile} />
-
-          <View style={styles.inputBox}>
-            <TextInput
-              placeholder=' Correo electrónico '
-              style={styles.inputText}
-              onChangeText={(text) => setEmail(text)}
-            />
-          </View>
-
-          <View style={styles.inputBox}>
-            <TextInput
-              placeholder='Contraseña'
-              style={styles.inputText}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry
-            />
-          </View>
-
-          {error ? <Text style={styles.errorText}>{error}</Text> : null}
-
-          <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Iniciar Sesión</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
-            <Text style={styles.buttonRegisterText}>Crear cuenta </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ImageBackground>
+    <View style={styles.container}>
+      <Text>Inicio de Sesión</Text>
+      <TextInput
+        placeholder="Correo electrónico"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Contraseña"
+        secureTextEntry
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+        style={styles.input}
+      />
+      {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Iniciar Sesión</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
+        <Text style={styles.buttonRegisterText}>Crear cuenta</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -91,28 +67,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderRadius: 20,
-    width: '100%',
-    padding: 60,
-    alignItems: 'center',
-  },
-  profile: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 20,
-  },
-  inputBox: {
-    width: '100%',
-    paddingVertical: 20,
-    backgroundColor: 'rgba(204, 204, 204, 0.6)',
-    borderRadius: 30,
-    marginVertical: 10,
-  },
-  inputText: {
-    paddingHorizontal: 30,
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 10,
+    width: '80%',
   },
   buttonBox: {
     backgroundColor: '#525FE1',
@@ -137,13 +98,6 @@ const styles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
     textAlign: 'center',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
