@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import { View, Image, TextInput, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
+import {
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { useAuth } from '../components/AuthContext'; 
+import { useAuth } from '../components/AuthContext';
 
 type LoginProps = {
   navigation: NavigationProp<any>;
@@ -13,38 +21,33 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
   const [error, setError] = useState('');
 
   const navigation = useNavigation<NavigationProp<any>>();
-  const { login } = useAuth(); // Utilizo el método de login desde el contexto de autenticación
+  const { login } = useAuth();
 
   const handleLogin = () => {
     if (email && password) {
-      // Intenta iniciar sesión
       const loginSuccess = login(email, password);
 
       if (loginSuccess) {
-        // Inicio de sesión exitoso, navegar a WelcomeScreen
         navigation.navigate('Welcome');
       } else {
         setError('Error de inicio de sesión: Credenciales incorrectas');
       }
     } else {
-      // Correo electrónico y contraseña son necesarios
       setError('Error de inicio de sesión: Correo electrónico y contraseña son necesarios');
     }
   };
 
   const handleLogout = () => {
-    
-  }
+    // ¿Es necesario un handleLogout aquí?
+  };
 
   const handleRegister = () => {
-    
-      navigation.navigate('Registrarse');
-    
+    navigation.navigate('Registrarse');
   };
 
   return (
     <ImageBackground
-      source={require('../assets/fondo3.jpg')} 
+      source={require('../assets/fondo3.jpg')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
@@ -54,7 +57,7 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
           <View style={styles.inputBox}>
             <TextInput
               placeholder=' Correo electrónico '
-              style={{ paddingHorizontal: 30 }}
+              style={styles.inputText}
               onChangeText={(text) => setEmail(text)}
             />
           </View>
@@ -62,7 +65,7 @@ const LoginScreen: React.FC<LoginProps> = (props) => {
           <View style={styles.inputBox}>
             <TextInput
               placeholder='Contraseña'
-              style={{ paddingHorizontal: 50 }}
+              style={styles.inputText}
               onChangeText={(text) => setPassword(text)}
               secureTextEntry
             />
@@ -108,20 +111,23 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginVertical: 10,
   },
+  inputText: {
+    paddingHorizontal: 30,
+  },
   buttonBox: {
     backgroundColor: '#525FE1',
     borderRadius: 30,
     paddingVertical: 20,
     width: 160,
     marginTop: 20,
-    marginBottom:20
+    marginBottom: 20,
   },
-  buttonRegister:{
-    borderBottomWidth:1,
-    borderBottomColor:"blue",
+  buttonRegister: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'blue',
   },
-  buttonRegisterText:{
-    color:"blue"
+  buttonRegisterText: {
+    color: 'blue',
   },
   buttonText: {
     textAlign: 'center',
