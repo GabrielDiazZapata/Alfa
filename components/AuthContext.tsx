@@ -24,20 +24,20 @@ interface LoginResponse {
   user: User;
 }
 
-const apiUrl = 'http://192.168.1.135:8888';
+const apiUrl = 'http://172.16.100.150:8888';
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (name: string, password: string): Promise<boolean> => {
     try {
       const response = await fetch(`${apiUrl}/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, password }),
       });
 
       const data: LoginResponse = await response.json();

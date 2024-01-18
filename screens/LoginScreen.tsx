@@ -1,15 +1,14 @@
-// LoginScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useAuth } from '../components/AuthContext';
+
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<any>>();
   const { login } = useAuth();
 
   const handleLogin = async () => {
@@ -36,7 +35,7 @@ const LoginScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Inicio de Sesión</Text>
+      <Text>Inicio de Sesión </Text>
       <TextInput
         placeholder="Correo electrónico"
         value={email}
@@ -52,10 +51,10 @@ const LoginScreen: React.FC = () => {
       />
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
       <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Iniciar Sesión</Text>
+        <Text style={styles.buttonText}>Iniciar Sesión </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
-        <Text style={styles.buttonRegisterText}>Crear cuenta</Text>
+        <Text style={styles.buttonRegisterText}>Crear cuenta </Text>
       </TouchableOpacity>
     </View>
   );
