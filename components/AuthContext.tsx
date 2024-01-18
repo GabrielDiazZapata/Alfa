@@ -4,7 +4,7 @@ import { login, register, logout, User } from './AuthServices';
 
 type AuthContextProps = {
   children: ReactNode;
-};
+};  
 
 type AuthContextType = {
   user: User | null;
