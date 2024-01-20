@@ -4,32 +4,16 @@ import { DrawerNavigationOptions, createDrawerNavigator } from '@react-navigatio
 import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import MainPage from './MainPage';
-import appColors from '../assets/Styles/appColors';
 import RegisterScreen from '../screens/RegisterScreen';
 
 const Drawer = createDrawerNavigator();
 
 const CustomDrawer = () => {
 
-  const drawerNavigatorScreenOptions: DrawerNavigationOptions = {
-    headerTitle: 'ALFA',
-    headerTitleAlign: 'center',
-    headerStyle: {
-      backgroundColor: appColors.primary
-    },
-    headerTintColor: appColors.white,
-    drawerItemStyle: {
-      width: '100%',
-    },
-    drawerActiveTintColor: appColors.white,
-    drawerActiveBackgroundColor: appColors.primary,
-    drawerInactiveTintColor: 'lightgray',
-    drawerInactiveBackgroundColor: appColors.secondary,
-    drawerType: 'slide'
-  }
+  
 
   return (
-    <Drawer.Navigator initialRouteName='Welcome' screenOptions={drawerNavigatorScreenOptions}>
+    <Drawer.Navigator initialRouteName='Welcome'>
       <Drawer.Screen name='Welcome' component={WelcomeScreen}/>
       <Drawer.Screen name='Login' component={LoginScreen} />
       <Drawer.Screen name='Portfolio'component={MainPage} />

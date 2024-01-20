@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 20,
     width: '80%', // Ajusté el ancho de la tarjeta para que no ocupe el 100%
     padding: 60,
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   inputBox: {
     width: '100%',
     paddingVertical: 20,
-    backgroundColor: 'rgba(204, 204, 204, 0.6)',
+    backgroundColor: 'white',
     borderRadius: 30,
     marginVertical: 10,
   },

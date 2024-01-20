@@ -1,10 +1,12 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 
 const RegisterScreen: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation<NavigationProp<any>>();
 
   const handleRegister = async () => {
     try {
@@ -20,6 +22,8 @@ const RegisterScreen: React.FC = () => {
         }),
       });
 
+    
+
       const data = await response.json();
 
       if (response.ok) {
@@ -32,9 +36,14 @@ const RegisterScreen: React.FC = () => {
     }
   };
 
+  const handleLogin = () => {
+    navigation.navigate('Login');
+  };
+  
+
   return (
     <ImageBackground
-      source={require('../assets/space.gif')}
+      source={require('../assets/space3.gif')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
@@ -61,8 +70,12 @@ const RegisterScreen: React.FC = () => {
             style={styles.inputText}
             onChangeText={(text) => setPassword(text)}
           />
-          
-          <Button title="Registrar" onPress={handleRegister} />
+          <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
+            <Text style={styles.buttonRegisterText}>Registrar </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonRegister2} onPress={handleLogin} >
+            <Text style={styles.buttonRegisterText2}>Iniciar Sesion </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
@@ -77,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputBox: {
-    height: '60%',
+    height: '50%',
     width: '80%',
     paddingVertical: 20,
     backgroundColor: 'rgba(204, 204, 204, 0.3)',
@@ -85,14 +98,33 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'center',
   },
+  buttonRegister:{
+    backgroundColor: '#525FE1',
+    borderRadius: 30,
+    paddingVertical: 20,
+    width: 160,
+    marginTop: 20,
+  },
+  buttonRegisterText:{
+    textAlign: 'center',
+    color: 'white',
+  },
   inputText: {
     textAlign: 'center',
     marginBottom: 10,
     width: '80%',
     borderColor: 'gray',
+    backgroundColor:'white',
     borderRadius:30,
     borderWidth: 1,
     padding: 10,
+  },
+  buttonRegister2:{
+    borderBottomWidth:1,
+    borderBottomColor:"white",
+  },
+  buttonRegisterText2:{
+    color:"white"
   },
   title: {
     color:'white',
