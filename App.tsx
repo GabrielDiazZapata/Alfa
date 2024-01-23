@@ -7,6 +7,7 @@ import MainPage from './components/MainPage';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import RegisterScreen from './screens/RegisterScreen';
 import { Image, TouchableOpacity } from 'react-native';
+import MicrophoneScreen from './screens/MicrophoneScreen';
 
 export default function App() {
   const Drawer = createDrawerNavigator();
@@ -84,6 +85,23 @@ export default function App() {
             ),
           }}
         />
+
+        <Drawer.Screen
+          name="Microphone"
+          component={MicrophoneScreen}
+          options={{
+            title: 'Microphone',
+            headerTintColor: '#9acc77',
+            headerTitleAlign: 'center',
+            headerStyle: { backgroundColor: '#1f0a1d' },
+            headerRight: () => (
+              <TouchableOpacity onPress={handleLogout} style={{ marginRight: 15 }}>
+                <Image source={require('./assets/logout.png')} style={{ width: 20, height: 20 }} />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+  
       </Drawer.Navigator>
     );
   };

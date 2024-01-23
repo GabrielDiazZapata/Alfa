@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import MainPage from './MainPage';
 import RegisterScreen from '../screens/RegisterScreen';
+import MicrophoneScreen from '../screens/MicrophoneScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,6 +19,7 @@ const CustomDrawer = () => {
       <Drawer.Screen name='Login' component={LoginScreen} />
       <Drawer.Screen name='Portfolio'component={MainPage} />
       <Drawer.Screen name='Register' component={RegisterScreen} />
+      {/* <Drawer.Screen name='Microphone' component={MicrophoneScreen}/> */}
     </Drawer.Navigator>
   )
 }

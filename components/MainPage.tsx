@@ -15,7 +15,6 @@ const MainPage = () => {
         iconsUrls={person.iconsUrls}
         iconsMedia={person.iconsMedia}
         qrURL={person.qrURL}
-        informationData={person.informationData}
       />
     ));
   };

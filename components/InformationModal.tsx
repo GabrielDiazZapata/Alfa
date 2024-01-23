@@ -34,7 +34,6 @@ const InformationModal = (props: InformationModalData) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalHeader}>Cosas que me gustan</Text>
             <View style={styles.informationContainer}>
               {informationData.map((data, key) => (
                 <Text key={key} style={styles.informationStyle}>
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginLeft: 10,
   },
-  informationContainer: {
+   informationContainer: {
     borderWidth: 1,
     borderRadius: 20,
     margin: 10

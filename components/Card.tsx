@@ -13,7 +13,6 @@ type CardProps = {
   iconsUrls: string[];
   iconsMedia: ImageProps[];
   qrURL: string;
-  informationData: string[];
 };
 
 const Card = (props: CardProps) => {
