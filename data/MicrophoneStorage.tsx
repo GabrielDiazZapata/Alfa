@@ -1,4 +1,3 @@
-// MicrophoneStorage.tsx
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { RecordFile } from "../screens/MicrophoneScreen"; // Asegúrate de tener la importación correcta aquí
 

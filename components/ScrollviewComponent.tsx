@@ -7,22 +7,21 @@ import Card from './Card'
 
 const ScrollviewComponent = () => {
   return (
-        <ScrollView horizontal={true} centerContent={true} decelerationRate={0} snapToInterval={400}>
-            {
-                peopleData.map((card: PersonalData, index: number) =>
-                  <Card
-                    personalImage={card.personalImage}
-                    name={card.name}
-                    iconsUrls={card.iconsUrls}
-                    iconsMedia={card.iconsMedia}
-                    info={card.info}
-                    key={index}
-                    qrURL={card.qrURL}
-                    informationData={card.informationData}
-                  />
-                )
-            }
-        </ScrollView>
+    <ScrollView horizontal={true} centerContent={true} decelerationRate={0} snapToInterval={400}>
+      {
+        peopleData.map((card: PersonalData, index: number) =>
+          <Card
+            personalImage={card.personalImage}
+            name={card.name}
+            iconsUrls={card.iconsUrls}
+            iconsMedia={card.iconsMedia}
+            info={card.info}
+            key={index}
+            qrURL={card.qrURL}
+          />
+        )
+      }
+    </ScrollView>
   )
 }
 

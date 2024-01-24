@@ -18,10 +18,10 @@ const QrCode = (props: QrCodeProps) => {
 export default QrCode
 
 const styles = StyleSheet.create({
-    
-    qrCodeStyle: {
-        justifyContent: "center",
-        width: "100%",
-        alignItems: "center",
-      }
+
+  qrCodeStyle: {
+    justifyContent: "center",
+    width: "100%",
+    alignItems: "center",
+  }
 })

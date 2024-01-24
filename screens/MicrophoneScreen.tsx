@@ -93,7 +93,7 @@ const MicrophoneScreen = () => {
             <Text style={styles.buttonWords}>Play </Text>
           </TouchableOpacity>
           <View style={styles.align}>
-          <Text style={styles.fill}>Audio {index + 1} - {recordingLine.duration}    </Text>
+            <Text style={styles.fill}>Audio {index + 1} - {recordingLine.duration}    </Text>
           </View>
         </View>
       );
@@ -105,12 +105,12 @@ const MicrophoneScreen = () => {
       <Text style={styles.titleText}>Audios </Text>
       <ScrollView style={styles.scroll}>{getRecordingLines()}</ScrollView>
       <View style={styles.containerBottom}>
-      <TouchableOpacity style={styles.recordingButton} onPress={recording ? stopRecording : startRecording}>
-        {recording ? <Text style={styles.recordingText}>Recording... </Text> : <Text style={styles.recordingText}>Engrave </Text>}
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.deleteButton} onPress={DeleteRecordings}>
-        <Text style={styles.deleteText}>Delete all </Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.recordingButton} onPress={recording ? stopRecording : startRecording}>
+          {recording ? <Text style={styles.recordingText}>Recording... </Text> : <Text style={styles.recordingText}>Engrave </Text>}
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.deleteButton} onPress={DeleteRecordings}>
+          <Text style={styles.deleteText}>Delete all </Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -125,16 +125,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleText: {
-    marginTop:20,
-    marginBottom:0,
-    color:'white',
-    fontSize:20,
+    marginTop: 20,
+    marginBottom: 0,
+    color: 'white',
+    fontSize: 20,
   },
   containerBottom: {
-    flexDirection:'row',
+    flexDirection: 'row',
   },
-  align:{
-    marginTop:18,
+  align: {
+    marginTop: 18,
   },
   recordingButton: {
     width: 150,
@@ -161,10 +161,10 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 50,
     marginTop: 0,
-   backgroundColor: '#525FE1',
+    backgroundColor: '#525FE1',
   },
   deleteText: {
-    fontSize:20,
+    fontSize: 20,
     color: 'white',
   },
   row: {
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   },
   fill: {
     flex: 1,
-    fontSize:17,
+    fontSize: 17,
     margin: 15,
     color: 'white',
   },
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 50,
     marginBottom: 30,
-    backgroundColor: 'rgba(204, 204, 204, 0.2)',  
+    backgroundColor: 'rgba(204, 204, 204, 0.2)',
   },
   playButton: {
     width: 90,
@@ -195,11 +195,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
-    borderColor:'white',
+    borderColor: 'white',
     marginTop: 20,
   },
   buttonWords: {
-    color:'black',
+    color: 'black',
   },
 });
 

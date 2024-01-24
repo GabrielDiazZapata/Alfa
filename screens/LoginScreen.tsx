@@ -31,11 +31,11 @@ const LoginScreen: React.FC = () => {
   const handleRegister = () => {
     navigation.navigate('Registrarse');
   };
-  
+
 
   return (
     <ImageBackground
-      source={require('../assets/fondo3.jpg')} 
+      source={require('../assets/fondo3.jpg')}
       style={styles.backgroundImage}
     >
       <View style={styles.container}>
@@ -64,7 +64,7 @@ const LoginScreen: React.FC = () => {
           <TouchableOpacity style={styles.buttonBox} onPress={handleLogin}>
             <Text style={styles.buttonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
-             <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
+          <TouchableOpacity style={styles.buttonRegister} onPress={handleRegister}>
             <Text style={styles.buttonRegisterText}>Crear cuenta </Text>
           </TouchableOpacity>
         </View>
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-  buttonRegister:{
-    borderBottomWidth:1,
-    borderBottomColor:"blue",
+  buttonRegister: {
+    borderBottomWidth: 1,
+    borderBottomColor: "blue",
   },
-  buttonRegisterText:{
-    color:"blue"
+  buttonRegisterText: {
+    color: "blue"
   },
   errorText: {
     color: 'red',

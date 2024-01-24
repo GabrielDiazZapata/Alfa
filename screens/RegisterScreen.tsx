@@ -22,7 +22,7 @@ const RegisterScreen: React.FC = () => {
         }),
       });
 
-    
+
 
       const data = await response.json();
 
@@ -39,7 +39,7 @@ const RegisterScreen: React.FC = () => {
   const handleLogin = () => {
     navigation.navigate('Login');
   };
-  
+
 
   return (
     <ImageBackground
@@ -52,7 +52,7 @@ const RegisterScreen: React.FC = () => {
           <TextInput
             placeholder="Nombre"
             value={name}
-            style={styles.inputText }
+            style={styles.inputText}
             onChangeText={(text) => setName(text)}
           />
 
@@ -62,7 +62,7 @@ const RegisterScreen: React.FC = () => {
             style={styles.inputText}
             onChangeText={(text) => setEmail(text)}
           />
-          
+
           <TextInput
             placeholder="Contraseña"
             secureTextEntry
@@ -98,14 +98,14 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'center',
   },
-  buttonRegister:{
+  buttonRegister: {
     backgroundColor: '#525FE1',
     borderRadius: 30,
     paddingVertical: 20,
     width: 160,
     marginTop: 20,
   },
-  buttonRegisterText:{
+  buttonRegisterText: {
     textAlign: 'center',
     color: 'white',
   },
@@ -114,20 +114,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '80%',
     borderColor: 'gray',
-    backgroundColor:'white',
-    borderRadius:30,
+    backgroundColor: 'white',
+    borderRadius: 30,
     borderWidth: 1,
     padding: 10,
   },
-  buttonRegister2:{
-    borderBottomWidth:1,
-    borderBottomColor:"white",
+  buttonRegister2: {
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
   },
-  buttonRegisterText2:{
-    color:"white"
+  buttonRegisterText2: {
+    color: "white"
   },
   title: {
-    color:'white',
+    color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,

@@ -46,8 +46,8 @@ const WelcomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height:'100%',
-    width:'100%',
+    height: '100%',
+    width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   logo: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     marginVertical: 300,
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   button: {
     backgroundColor: '#525FE1',

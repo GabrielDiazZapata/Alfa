@@ -23,7 +23,7 @@ const Card = (props: CardProps) => {
         <Image style={styles.personalImage} source={personalImage} />
         <Text style={styles.cardTitleText}>{name}</Text>
         <Text style={styles.textStyle}> {info} </Text>
-        <ModalComponent iconsUrls={iconsUrls} iconsMedia={iconsMedia} qrURL={qrURL}/>
+        <ModalComponent iconsUrls={iconsUrls} iconsMedia={iconsMedia} qrURL={qrURL} />
       </View>
     </View>
   );

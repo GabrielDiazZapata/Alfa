@@ -11,15 +11,15 @@ const Drawer = createDrawerNavigator();
 
 const CustomDrawer = () => {
 
-  
+
 
   return (
     <Drawer.Navigator initialRouteName='Welcome'>
-      <Drawer.Screen name='Welcome' component={WelcomeScreen}/>
+      <Drawer.Screen name='Welcome' component={WelcomeScreen} />
       <Drawer.Screen name='Login' component={LoginScreen} />
-      <Drawer.Screen name='Portfolio'component={MainPage} />
+      <Drawer.Screen name='Portfolio' component={MainPage} />
       <Drawer.Screen name='Register' component={RegisterScreen} />
-      <Drawer.Screen name='Microphone' component={MicrophoneScreen}/> 
+      <Drawer.Screen name='Microphone' component={MicrophoneScreen} />
     </Drawer.Navigator>
   )
 }

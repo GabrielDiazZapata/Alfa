@@ -20,13 +20,13 @@ const MainPage = () => {
   };
   return (
     <ImageBackground
-      source={require('../assets/fondo4.jpg')} 
+      source={require('../assets/fondo4.jpg')}
       style={styles.backgroundImage}
-      > 
-    <ScrollView contentContainerStyle={styles.bodystails}>
-      <Text></Text>
-      {renderCards()}
-    </ScrollView>
+    >
+      <ScrollView contentContainerStyle={styles.bodystails}>
+        <Text></Text>
+        {renderCards()}
+      </ScrollView>
     </ImageBackground>
   );
 };

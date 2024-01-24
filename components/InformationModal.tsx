@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginLeft: 10,
   },
-   informationContainer: {
+  informationContainer: {
     borderWidth: 1,
     borderRadius: 20,
     margin: 10
